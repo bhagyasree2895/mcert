@@ -9,5 +9,7 @@ Link to the Mock Flow https://projects.invisionapp.com/prototype/CERT-ck0lv5e0z0
 
 Link to the API project for the Mobile App/Web Application https://github.com/GunashekarKoppula/mcert-api
 
-Iam sunil Mundru pursuing my masters at Northwest missouri state university
+I am sunil Mundru pursuing my masters at Northwest missouri state university
+
+I am Harshith Gudapati pursuing my masters at Northwest missouri state university
 
