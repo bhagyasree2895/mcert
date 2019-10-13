@@ -9,6 +9,10 @@ import android.view.View;
 public class TabsActivity extends AppCompatActivity {
     public static final int GOOD_REQ=1;
     public static final int GOOD_RES=0;
+    public static final int REQ=10;
+    public static final int RES=20;
+//    public static final int REQ_TOG=10;
+//    public static final int RES_TOG=20;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,11 @@ public class TabsActivity extends AppCompatActivity {
 
             }
         }
+        else if(requestCode == REQ) {
+                if (resultCode == RES) {
+                }
+            }
+
     }
 
 

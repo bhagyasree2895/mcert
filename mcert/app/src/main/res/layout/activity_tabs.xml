@@ -45,6 +45,7 @@
         android:id="@+id/button5"
         android:layout_width="357dp"
         android:layout_height="152dp"
+        android:onClick="profile"
         android:text="profile"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
