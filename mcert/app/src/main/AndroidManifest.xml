@@ -9,7 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TabsActivity"></activity>
+        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".PastActivity" />
+        <activity android:name=".GeneralReport" />
+        <activity android:name=".IncidentReportActivity" />
+        <activity android:name=".TabsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
