@@ -18,5 +18,9 @@ public class IncidentReportActivity extends AppCompatActivity {
         setResult(TabsActivity.GOOD_RES,ini);
         finish();
     }
+    public void getLocationAction(View v){
+        Intent ini = new Intent(this,MapsActivity.class);
+        startActivity(ini);
+    }
 }
 
