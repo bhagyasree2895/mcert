@@ -17,4 +17,8 @@ public class MainActivity extends AppCompatActivity {
         Intent tip_intent = new Intent(this, TabsActivity.class);
         startActivity(tip_intent);
     }
+    public void signUpAction(View v){
+        Intent signUp_intent = new Intent(this, SignUpActivity.class);
+        startActivity(signUp_intent);
+    }
 }
