@@ -21,4 +21,5 @@ public class MainActivity extends AppCompatActivity {
         Intent signUp_intent = new Intent(this, SignUpActivity.class);
         startActivity(signUp_intent);
     }
+
 }
