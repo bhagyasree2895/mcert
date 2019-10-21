@@ -8,14 +8,54 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="149dp"
-        android:layout_height="142dp"
+        android:layout_width="394dp"
+        android:layout_height="134dp"
         android:onClick="onTornado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintHorizontal_bias="0.404"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.189"
+        app:layout_constraintVertical_bias="0.047"
         app:srcCompat="@drawable/tornado" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="394dp"
+        android:layout_height="164dp"
+        android:onClick="onStorm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.444"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.34"
+        app:srcCompat="@drawable/storm" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="394dp"
+        android:layout_height="138dp"
+        android:onClick="onCyclone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.679"
+        app:srcCompat="@drawable/cyclone" />
+
+    <ImageButton
+        android:id="@+id/imageButton6"
+        android:layout_width="394dp"
+        android:layout_height="138dp"
+        android:onClick="onFlood"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.972"
+        app:srcCompat="@drawable/flood" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

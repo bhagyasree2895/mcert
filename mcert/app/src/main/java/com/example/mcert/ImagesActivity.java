@@ -21,4 +21,28 @@ public class ImagesActivity extends AppCompatActivity {
 
         finish();
     }
+
+    public void onStorm(View v){
+        Intent in = new Intent();
+        in.putExtra("disaster","Storm");
+        setResult(IncidentReportActivity.GOOD_RES,in);
+
+        finish();
+    }
+
+    public void onCyclone(View v){
+        Intent in = new Intent();
+        in.putExtra("disaster","Cyclone");
+        setResult(IncidentReportActivity.TOG_RES,in);
+
+        finish();
+    }
+    public void onFlood(View v){
+        Intent in = new Intent();
+        in.putExtra("disaster","Flood");
+        setResult(IncidentReportActivity.FLO_RES,in);
+
+        finish();
+    }
+
 }

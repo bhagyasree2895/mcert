@@ -35,7 +35,7 @@
 
     <EditText
         android:id="@+id/editText3"
-        android:layout_width="228dp"
+        android:layout_width="0dp"
         android:layout_height="45dp"
         android:ems="10"
         android:hint="title"
@@ -49,7 +49,7 @@
 
     <EditText
         android:id="@+id/editText6"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="57dp"
         android:ems="10"
         android:hint="address of disaster"
@@ -63,7 +63,7 @@
 
     <EditText
         android:id="@+id/editText7"
-        android:layout_width="230dp"
+        android:layout_width="0dp"
         android:layout_height="57dp"
         android:ems="10"
         android:hint="time when disaster ocurred"
@@ -74,76 +74,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.459" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="129dp"
-        android:layout_height="42dp"
-        android:text="Report Title"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.197" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="122dp"
-        android:layout_height="38dp"
-        android:text="Address"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.055"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.367" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="122dp"
-        android:layout_height="38dp"
-        android:text="Time"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.055"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.457" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="169dp"
-        android:layout_height="55dp"
-        android:text="Type of Building"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.806" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="169dp"
-        android:layout_height="55dp"
-        android:text="Members Affected"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.897" />
 
     <TextView
         android:id="@+id/textView5"
@@ -227,7 +157,7 @@
 
     <EditText
         android:id="@+id/editText11"
-        android:layout_width="204dp"
+        android:layout_width="0dp"
         android:layout_height="44dp"
         android:ems="10"
         android:hint="Building type"
@@ -241,7 +171,7 @@
 
     <EditText
         android:id="@+id/editText12"
-        android:layout_width="204dp"
+        android:layout_width="0dp"
         android:layout_height="44dp"
         android:ems="10"
         android:hint="Members affected"
