@@ -9,9 +9,11 @@
     <Button
         android:id="@+id/button2"
         android:layout_width="357dp"
-        android:layout_height="152dp"
+        android:layout_height="133dp"
+        android:background="#85B4DA"
         android:onClick="incident"
         android:text="Incident Report"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,10 +22,12 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="357dp"
-        android:layout_height="152dp"
+        android:layout_width="362dp"
+        android:layout_height="125dp"
+        android:background="#85B4DA"
         android:onClick="general"
         android:text="General Report"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,9 +36,11 @@
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="357dp"
-        android:layout_height="152dp"
+        android:layout_width="366dp"
+        android:layout_height="121dp"
+        android:background="#85B4DA"
         android:text="past reports"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,10 +49,12 @@
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="357dp"
-        android:layout_height="152dp"
+        android:layout_width="366dp"
+        android:layout_height="124dp"
+        android:background="#85B4DA"
         android:onClick="profile"
         android:text="profile"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
