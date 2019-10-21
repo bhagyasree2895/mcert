@@ -53,28 +53,14 @@
         android:layout_width="0dp"
         android:layout_height="57dp"
         android:ems="10"
-        android:hint="address of disaster"
+        android:hint="Street, City of disaster"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.354" />
-
-    <EditText
-        android:id="@+id/editText7"
-        android:layout_width="0dp"
-        android:layout_height="57dp"
-        android:ems="10"
-        android:hint="time when disaster ocurred"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.85"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.459" />
+        app:layout_constraintVertical_bias="0.413" />
 
     <TextView
         android:id="@+id/textView5"
