@@ -14,9 +14,11 @@ public class ImagesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_images);
     }
 
-    public void onImage(View v){
-        Intent in = new Intent(this,IncidentReportActivity.class);
-        startActivity(in);
+    public void onTornado(View v){
+        Intent in = new Intent();
+        in.putExtra("name","Tornado");
+        setResult(IncidentReportActivity.TASK_RES,in);
 
+        finish();
     }
 }

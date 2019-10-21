@@ -10,6 +10,7 @@
         android:id="@+id/imageButton"
         android:layout_width="149dp"
         android:layout_height="142dp"
+        android:onClick="onTornado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.12"
