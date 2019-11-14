@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-
-import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
+import android.widget.TextView;
 
 public class IncidentReportActivity extends AppCompatActivity {
     public static final int TASK_REQ = 1;
@@ -19,22 +17,11 @@ public class IncidentReportActivity extends AppCompatActivity {
     public static final int TOG_RES = 2;
 
     public static final int FLO_RES = 2;
-    String [] IMPACTLEVEL={"0","1","2","3","4","5"};
-
-    String [] IMPACTLEVEL1={"0","1","2","3","4","5"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incident_report);
-
-        ArrayAdapter<String>arrayadapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,IMPACTLEVEL);
-        MaterialBetterSpinner betterSpinner = findViewById(R.id.spinner);
-        betterSpinner.setAdapter(arrayadapter);
-
-        ArrayAdapter<String>arrayadapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line,IMPACTLEVEL1);
-        MaterialBetterSpinner betterSpinner1 = findViewById(R.id.spinner1);
-        betterSpinner1.setAdapter(arrayadapter1);
     }
 
     public void onSubmit(View v) {
@@ -45,7 +32,7 @@ public class IncidentReportActivity extends AppCompatActivity {
 
     public void getLocationAction(View v) {
         Intent ini = new Intent(this, MapsActivity.class);
-        startActivity(ini);
+        startActivityForResult(ini,11);
     }
 
     public void getDisasterType(View v) {
@@ -74,6 +61,13 @@ public class IncidentReportActivity extends AppCompatActivity {
                 String str = disasterInt.getStringExtra("disaster");
                 EditText edt = findViewById(R.id.editText5);
                 edt.setText(str);
+            }
+        }
+        if(requestCode == 11) {
+            if (resultCode == 11) {
+                String str = disasterInt.getStringExtra("LocationName");
+                TextView incidentLocTV=findViewById(R.id.location);
+                incidentLocTV.setText(str);
             }
         }
     }

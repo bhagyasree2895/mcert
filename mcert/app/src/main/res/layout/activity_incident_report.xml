@@ -49,8 +49,8 @@
                 android:layout_width="193dp"
                 android:layout_height="74dp"
                 android:layout_margin="10dp"
-                android:text="Location"
-                />
+                android:onClick="getLocationAction"
+                android:text="Location" />
             <TextView
                 android:id="@+id/location"
                 android:layout_width="match_parent"
