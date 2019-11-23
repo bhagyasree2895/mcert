@@ -4,27 +4,35 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.security.NetworkSecurityPolicy;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.Request;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     EditText username;
     EditText pwd;
     RequestQueue requestQueue;
     String url;
+    ArrayList<JSONArray> LoginRequest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -46,6 +54,57 @@ public class MainActivity extends AppCompatActivity {
         startActivity(signUp_intent);
     }
 
+    public void Login(View v){
+        try {
+            RequestQueue requestQueue = Volley.newRequestQueue(this);
+            String URL = "https://eoc-dm.herokuapp.com/api/auth/login";
+            JSONObject jsonBody = new JSONObject();
+            jsonBody.put("email", "admin@login.com");
+            jsonBody.put("password", "Admin123#");
+            final String requestBody = jsonBody.toString();
+
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    Log.i("VOLLEY", response);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("VOLLEY", error.toString());
+                }
+            }) {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+                }
+
+                @Override
+                public byte[] getBody() throws AuthFailureError {
+                    try {
+                        return requestBody == null ? null : requestBody.getBytes("utf-8");
+                    } catch (UnsupportedEncodingException uee) {
+                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                        return null;
+                    }
+                }
+
+                @Override
+                protected Response<String> parseNetworkResponse(NetworkResponse response) {
+                    String responseString = "";
+                    if (response != null) {
+                        responseString = String.valueOf(response.statusCode);
+                        // can get more details such as response.headers
+                    }
+                    return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
+                }
+            };
+
+            requestQueue.add(stringRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void getRepoList(String username, String pwd){
         this.url = "http://eoc-dm.herokuapp.com/api/incident/getIncidents?status=open";
@@ -75,7 +134,8 @@ public class MainActivity extends AppCompatActivity {
 //                            setRepoListText("No repos found.");
 //                        }
 
-                        Log.d("response",response.toString())  ;
+                        Log.d("response",response.toString()) ;
+                        LoginRequest.add(response);
 
                     }
                 },

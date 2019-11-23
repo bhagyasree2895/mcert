@@ -49,7 +49,7 @@
         android:layout_width="217dp"
         android:layout_height="42dp"
         android:background="#46A0EB"
-        android:onClick="getReposClicked"
+        android:onClick="Login"
         android:text="Login"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
