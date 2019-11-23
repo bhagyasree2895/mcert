@@ -4,18 +4,38 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.security.NetworkSecurityPolicy;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.Request;
+import com.android.volley.toolbox.Volley;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+
 import org.json.JSONArray;
+import org.json.JSONObject;
+import org.json.JSONException;
 
 public class MainActivity extends AppCompatActivity {
-
+    EditText username;
+    EditText pwd;
+    RequestQueue requestQueue;
+    String url;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
+        //NetworkSecurityPolicy.isCleartextTrafficPermitted()
         setContentView(R.layout.activity_main);
+        username = findViewById(R.id.UserName);
+        pwd = findViewById(R.id.password);
+
+        requestQueue = Volley.newRequestQueue(this);
     }
     public void tip(View v){
         Intent tip_intent = new Intent(this, TabsActivity.class);
@@ -25,13 +45,12 @@ public class MainActivity extends AppCompatActivity {
         Intent signUp_intent = new Intent(this, SignUpActivity.class);
         startActivity(signUp_intent);
     }
-5
-    EditText username = findViewById(R.id.UserName);
-    EditText pwd = findViewById(R.id.password);
-    String url;
+
+
     private void getRepoList(String username, String pwd){
-        this.url = "https://eoc-dm.herokuapp.com/api/incident/editIncident";
-        JsonArrayRequest arrReq = new JsonArrayRequest(Request.Method.POST, url,
+        this.url = "http://eoc-dm.herokuapp.com/api/incident/getIncidents?status=open";
+       // this.url = " http://www.appdomain.com/users";
+        JsonArrayRequest arrReq = new JsonArrayRequest(Request.Method.GET, url,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -65,8 +84,8 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // If there a HTTP error then add a note to our repo list.
-                        setRepoListText("Error while calling REST API");
-                        Log.e("Volley", error.toString());
+//                        setRepoListText("Error while calling REST API");
+                        Log.e("Temp", error.toString());
                         // Log.e(tag:"Error",error)
                     }
                 }
@@ -75,7 +94,8 @@ public class MainActivity extends AppCompatActivity {
         // The request queue will automatically handle the request as soon as it can.
         requestQueue.add(arrReq);
     }
-    }
+
+
 
     public void getReposClicked(View v) {
         // Clear the repo list (so we have a fresh screen to add to)
