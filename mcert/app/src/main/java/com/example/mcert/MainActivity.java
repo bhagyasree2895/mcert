@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -59,19 +60,30 @@ public class MainActivity extends AppCompatActivity {
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             String URL = "https://eoc-dm.herokuapp.com/api/auth/login";
             JSONObject jsonBody = new JSONObject();
-            jsonBody.put("email", "admin@login.com");
-            jsonBody.put("password", "Admin123#");
+            jsonBody.put("email", this.username.getText().toString());
+           // Toast.makeText(getApplicationContext(),this.pwd.getText().toString()+"",Toast.LENGTH_SHORT).show();
+            jsonBody.put("password", this.pwd.getText().toString());
             final String requestBody = jsonBody.toString();
+            final Intent tip_intent = new Intent(this, TabsActivity.class);
+
+
+
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                 @Override
+
                 public void onResponse(String response) {
                     Log.i("VOLLEY", response);
+                  //  Intent ini = new Intent(this,TabsActivity.class)
+                    startActivity(tip_intent);
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Log.e("VOLLEY", error.toString());
+
+                    Toast.makeText(getApplicationContext(),"Invalid Credentials",Toast.LENGTH_SHORT).show();
+
                 }
             }) {
                 @Override
@@ -101,6 +113,8 @@ public class MainActivity extends AppCompatActivity {
             };
 
             requestQueue.add(stringRequest);
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
