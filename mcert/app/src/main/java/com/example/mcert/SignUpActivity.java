@@ -68,13 +68,13 @@ public class SignUpActivity extends AppCompatActivity {
             String URL = "https://eoc-dm.herokuapp.com/api/auth/register";
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("contactNo",this.Contact.getText().toString());
-            jsonBody.put("email",this.Email.toString());
-            jsonBody.put("enformentOfficer","false");
-            jsonBody.put("firstName",this.firstname.toString());
-            jsonBody.put("lastName",this.lastname.toString());
+            jsonBody.put("email",this.Email.getText().toString());
+            jsonBody.put("enforcementOfficer","false");
+            jsonBody.put("firstName",this.firstname.getText().toString());
+            jsonBody.put("lastName",this.lastname.getText().toString());
             jsonBody.put("medicalCertification","");
-            jsonBody.put("password",this.Password.toString());
-            jsonBody.put("password2",this.Confirm.toString());
+            jsonBody.put("password",this.Password.getText().toString());
+            jsonBody.put("password2",this.Confirm.getText().toString());
 
 
 
@@ -94,7 +94,7 @@ public class SignUpActivity extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e("VOLLEY", error.toString());
+                    Log.e("VOLLEY", error.getMessage());
 
                     Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT).show();
 
