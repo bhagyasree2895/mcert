@@ -30,6 +30,8 @@ public class IncidentReportActivity extends AppCompatActivity {
         finish();
     }
 
+
+
     public void getLocationAction(View v) {
         Intent ini = new Intent(this, MapsActivity.class);
         startActivityForResult(ini,11);
@@ -44,22 +46,22 @@ public class IncidentReportActivity extends AppCompatActivity {
         if (requestCode == TASK_REQ) {
             if (resultCode == TASK_RES) {
                 String str = disasterInt.getStringExtra("name");
-                EditText edt = findViewById(R.id.editText5);
+                EditText edt = findViewById(R.id.Type2);
                 edt.setText(str);
             }
             else if (resultCode == GOOD_RES) {
                 String str = disasterInt.getStringExtra("disaster");
-                EditText edt = findViewById(R.id.editText5);
+                EditText edt = findViewById(R.id.Type2);
                 edt.setText(str);
             }
             else if(resultCode == TOG_RES){
                 String str = disasterInt.getStringExtra("disaster");
-                EditText edt = findViewById(R.id.editText5);
+                EditText edt = findViewById(R.id.Type2);
                 edt.setText(str);
             }
             else if(resultCode == FLO_RES){
                 String str = disasterInt.getStringExtra("disaster");
-                EditText edt = findViewById(R.id.editText5);
+                EditText edt = findViewById(R.id.Type2);
                 edt.setText(str);
             }
         }
