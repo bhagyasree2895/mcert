@@ -19,7 +19,8 @@
                 android:id="@+id/general"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="General Report "
+                android:text="General Report"
+                android:gravity="center"
                 android:textSize="30dp" />
 
             <TextView

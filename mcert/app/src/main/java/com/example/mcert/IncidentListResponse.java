@@ -5,6 +5,7 @@ import androidx.core.view.GestureDetectorCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -54,7 +55,10 @@ public class IncidentListResponse extends AppCompatActivity {
         }
     }
 
-
+    public void onSubmit(View v){
+        Intent ini = new Intent(this, TabsActivity.class);
+        startActivity(ini);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
