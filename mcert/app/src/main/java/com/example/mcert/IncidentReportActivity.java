@@ -23,6 +23,8 @@ public class IncidentReportActivity extends AppCompatActivity {
 
     String[] ImpactLevel={"Low","Medium","High"};
 
+    String[] ImpactLevel1={"Low","Medium","High"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,10 @@ public class IncidentReportActivity extends AppCompatActivity {
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,ImpactLevel);
         MaterialBetterSpinner betterSpinner = findViewById(R.id.spinner1);
         betterSpinner.setAdapter(arrayAdapter);
+
+        ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,ImpactLevel1);
+        MaterialBetterSpinner betterSpinner1 = findViewById(R.id.spinner);
+        betterSpinner1.setAdapter(arrayAdapter1);
     }
 
     public void onSubmit(View v) {
