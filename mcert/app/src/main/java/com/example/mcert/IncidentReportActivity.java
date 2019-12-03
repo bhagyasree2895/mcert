@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 public class IncidentReportActivity extends AppCompatActivity {
     public static final int TASK_REQ = 1;
@@ -18,10 +21,16 @@ public class IncidentReportActivity extends AppCompatActivity {
 
     public static final int FLO_RES = 2;
 
+    String[] ImpactLevel={"Low","Medium","High"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incident_report);
+
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,ImpactLevel);
+        MaterialBetterSpinner betterSpinner = findViewById(R.id.spinner1);
+        betterSpinner.setAdapter(arrayAdapter);
     }
 
     public void onSubmit(View v) {

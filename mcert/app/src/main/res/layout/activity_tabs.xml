@@ -7,47 +7,32 @@
     tools:context=".TabsActivity">
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="328dp"
-        android:layout_height="71dp"
-        android:background="#85B4DA"
-        android:onClick="incident"
-        android:text="Incident Report"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.071" />
-
-    <Button
         android:id="@+id/button3"
-        android:layout_width="291dp"
-        android:layout_height="88dp"
+        android:layout_width="324dp"
+        android:layout_height="91dp"
         android:background="#85B4DA"
         android:onClick="general"
         android:text="General Report"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.446"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.261" />
+        app:layout_constraintVertical_bias="0.287" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="314dp"
-        android:layout_height="85dp"
+        android:layout_width="324dp"
+        android:layout_height="91dp"
         android:background="#85B4DA"
         android:text="past reports"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.448" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button5"
@@ -55,26 +40,26 @@
         android:layout_height="91dp"
         android:background="#85B4DA"
         android:onClick="profile"
-        android:text="profile"
+        android:text="MY PROFILE"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.574"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.642" />
+        app:layout_constraintVertical_bias="0.729" />
 
     <Button
         android:id="@+id/incident_list"
         android:layout_width="324dp"
         android:layout_height="91dp"
         android:background="#85B4DA"
-        android:text="IncidentsList"
+        android:text="Incidents List"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.574"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.868" />
+        app:layout_constraintVertical_bias="0.076" />
 </androidx.constraintlayout.widget.ConstraintLayout>
