@@ -65,7 +65,7 @@ public class IncidentListResponse extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_incident_list_response);
         incident_model = Model.getModel();
-        incidentServer = new IncidentListAdapter(incident_model);
+        incidentServer = new IncidentListAdapter(incident_model,this);
         incidentrecycler = findViewById(R.id.IncidentRecycler);
         incidentrecycler.setAdapter(incidentServer);
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);

@@ -1,6 +1,9 @@
 package com.example.mcert;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -10,10 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class IncidentListAdapter  extends RecyclerView.Adapter<IncidentListAdapter.IncidentViewHolder> {
     private Model incident_model;
+    private Context context;
 
-    public IncidentListAdapter(Model incident_model) {
+    public IncidentListAdapter(Model incident_model, Context context) {
         super();
         this.incident_model = incident_model;
+        this.context=context;
     }
 
     public static class IncidentViewHolder extends RecyclerView.ViewHolder {
@@ -41,6 +46,15 @@ public class IncidentListAdapter  extends RecyclerView.Adapter<IncidentListAdapt
         LinearLayout hold_view = holder.linearView;
         TextView word_holder = hold_view.findViewById(R.id.incident_holder);
         word_holder.setText(incident_model.getIncidentsarray().get(position).Incident);
+        word_holder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent in=new Intent(context,IncidentReportActivity.class);
+
+                context.startActivity(in);
+
+            }
+        });
     }
 
     @Override

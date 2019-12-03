@@ -9,9 +9,10 @@
         android:id="@+id/incident_holder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:text="Incident" />
+        android:layout_margin="3dp"
+        android:background="#BDC3C7"
+        android:text="Incident"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
 
 
