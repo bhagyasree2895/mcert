@@ -16,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.Request;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.android.volley.VolleyError;
@@ -29,6 +30,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    static String token;
     EditText username;
     EditText pwd;
     RequestQueue requestQueue;
@@ -61,20 +63,30 @@ public class MainActivity extends AppCompatActivity {
             String URL = "https://eoc-dm.herokuapp.com/api/auth/login";
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("email", this.username.getText().toString());
-           // Toast.makeText(getApplicationContext(),this.pwd.getText().toString()+"",Toast.LENGTH_SHORT).show();
+            Log.d("username",this.username.getText().toString());
+            // Toast.makeText(getApplicationContext(),this.pwd.getText().toString()+"",Toast.LENGTH_SHORT).show();
             jsonBody.put("password", this.pwd.getText().toString());
+            Log.d("pwd", this.pwd.getText().toString());
             final String requestBody = jsonBody.toString();
             final Intent tip_intent = new Intent(this, TabsActivity.class);
+            //should be removed after fixing login issue
+            //     startActivity(tip_intent);
 
 
 
-
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, URL, jsonBody, new Response.Listener<JSONObject>() {
                 @Override
 
-                public void onResponse(String response) {
-                    Log.i("VOLLEY", response);
-                  //  Intent ini = new Intent(this,TabsActivity.class)
+                public void onResponse(JSONObject response) {
+                    Log.i("VOLLEY", response.toString());
+                    // json = new JSONObject(jsonResult);
+                    try {
+                        token=response.getString("token");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    ;
+                    //  Intent ini = new Intent(this,TabsActivity.class)
                     startActivity(tip_intent);
                 }
             }, new Response.ErrorListener() {
@@ -91,25 +103,25 @@ public class MainActivity extends AppCompatActivity {
                     return "application/json; charset=utf-8";
                 }
 
-                @Override
-                public byte[] getBody() throws AuthFailureError {
-                    try {
-                        return requestBody == null ? null : requestBody.getBytes("utf-8");
-                    } catch (UnsupportedEncodingException uee) {
-                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-                        return null;
-                    }
-                }
-
-                @Override
-                protected Response<String> parseNetworkResponse(NetworkResponse response) {
-                    String responseString = "";
-                    if (response != null) {
-                        responseString = String.valueOf(response.statusCode);
-                        // can get more details such as response.headers
-                    }
-                    return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
-                }
+//                @Override
+//                public byte[] getBody() throws AuthFailureError {
+//                    try {
+//                        return requestBody == null ? null : requestBody.getBytes("utf-8");
+//                    } catch (UnsupportedEncodingException uee) {
+//                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+//                        return null;
+//                    }
+//                }
+//
+//                @Override
+//                protected Response<String> parseNetworkResponse(NetworkResponse response) {
+//                    String responseString = "";
+//                    if (response != null) {
+//                        responseString = String.valueOf(response.statusCode);
+//                        // can get more details such as response.headers
+//                    }
+//                    return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
+//                }
             };
 
             requestQueue.add(stringRequest);
@@ -119,6 +131,71 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+//    public void Login(View v){
+//        try {
+//            RequestQueue requestQueue = Volley.newRequestQueue(this);
+//            String URL = "https://eoc-dm.herokuapp.com/api/auth/login";
+//            JSONObject jsonBody = new JSONObject();
+//            jsonBody.put("email", this.username.getText().toString());
+//           // Toast.makeText(getApplicationContext(),this.pwd.getText().toString()+"",Toast.LENGTH_SHORT).show();
+//            jsonBody.put("password", this.pwd.getText().toString());
+//            final String requestBody = jsonBody.toString();
+//            final Intent tip_intent = new Intent(this, TabsActivity.class);
+//
+//
+//
+//
+//            StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+//                @Override
+//
+//                public void onResponse(String response) {
+//                    Log.i("VOLLEY", response);
+//                  //  Intent ini = new Intent(this,TabsActivity.class)
+//                    startActivity(tip_intent);
+//                }
+//            }, new Response.ErrorListener() {
+//                @Override
+//                public void onErrorResponse(VolleyError error) {
+//                    Log.e("VOLLEY", error.toString());
+//
+//                    Toast.makeText(getApplicationContext(),"Invalid Credentials",Toast.LENGTH_SHORT).show();
+//
+//                }
+//            }) {
+//                @Override
+//                public String getBodyContentType() {
+//                    return "application/json; charset=utf-8";
+//                }
+//
+//                @Override
+//                public byte[] getBody() throws AuthFailureError {
+//                    try {
+//                        return requestBody == null ? null : requestBody.getBytes("utf-8");
+//                    } catch (UnsupportedEncodingException uee) {
+//                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+//                        return null;
+//                    }
+//                }
+//
+//                @Override
+//                protected Response<String> parseNetworkResponse(NetworkResponse response) {
+//                    String responseString = "";
+//                    if (response != null) {
+//                        responseString = String.valueOf(response.statusCode);
+//                        // can get more details such as response.headers
+//                    }
+//                    return Response.success(responseString, HttpHeaderParser.parseCacheHeaders(response));
+//                }
+//            };
+//
+//            requestQueue.add(stringRequest);
+//
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private void getRepoList(String username, String pwd){
         this.url = "http://eoc-dm.herokuapp.com/api/incident/getIncidents?status=open";
