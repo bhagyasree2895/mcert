@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -16,6 +17,9 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class TabsActivity extends AppCompatActivity {
     public static final int GOOD_REQ=1;
@@ -29,64 +33,79 @@ public class TabsActivity extends AppCompatActivity {
     String url = "https://eoc-dm.herokuapp.com/api/incident/getIncidents?status=open";
 //    public static final int REQ_TOG=10;
 //    public static final int RES_TOG=20;
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tabs);
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_tabs);
 
-        requestQueue = Volley.newRequestQueue(this);
+    requestQueue = Volley.newRequestQueue(this);
 
-        Button incident_list = findViewById(R.id.incident_list);
-        final Intent list = new Intent(this, IncidentListResponse.class);
+    Button incident_list = findViewById(R.id.incident_list);
+    final Intent list = new Intent(this, IncidentListResponse.class);
 
-        incident_list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    incident_list.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
 
-                url = "https://eoc-dm.herokuapp.com/api/incident/getIncidents?status=open";
+            url = "http://eoc-dm.herokuapp.com/api/incident/getIncidents?status=open";
 
-                JsonArrayRequest arrReq = new JsonArrayRequest(Request.Method.GET, url,
-                        new Response.Listener<JSONArray>() {
-                            @Override
-                            public void onResponse(JSONArray response) {
+            JsonArrayRequest arrReq = new JsonArrayRequest(Request.Method.GET, url,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
 
-                                Log.d("volley",response.toString()) ;
-                                response_incident_api = response.toString();
+                            Log.d("volley",response.toString()) ;
+                            response_incident_api = response.toString();
 
 
-                                startActivity(list);
-
+                            startActivity(list);
 
 
 
-                            }
-                        },
 
-                        new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                // If there a HTTP error then add a note to our repo list.
-//                        setRepoListText("Error while calling REST API");
-                                Log.d("volley", error.toString());
-                                // Log.e(tag:"Error",error)
-                            }
                         }
-                );
-                // Add the request we just defined to our request queue.
-                // The request queue will automatically handle the request as soon as it can.
+                    },
+
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            // If there a HTTP error then add a note to our repo list.
+//                        setRepoListText("Error while calling REST API");
+                            Log.d("volley", error.toString());
+                            // Log.e(tag:"Error",error)
+                        }
+                    }
+            ){
+
+                //This is for Headers If You Needed
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("Content-Type", "application/json; charset=UTF-8");
+                    params.put("Authorization", MainActivity.token);
+                    Log.e("token", MainActivity.token);
+
+                    return params;
+                }
+
+
+            };
+            // Add the request we just defined to our request queue.
+            // The request queue will automatically handle the request as soon as it can.
 
 
 
-                requestQueue.add(arrReq);
+            requestQueue.add(arrReq);
 
 
-            }
-        });
+        }
+    });
 
 
 
 
-    }
+}
+
     public void incident(View v){
         Intent incident_intent = new Intent(this, IncidentReportActivity.class);
         startActivity(incident_intent);
