@@ -26,7 +26,7 @@ public class TabsActivity extends AppCompatActivity {
 
     static String response_incident_api ;
 
-    String url = "http://eoc-dm.herokuapp.com/api/incident/getIncidents?status=open";
+    String url = "https://eoc-dm.herokuapp.com/api/incident/getIncidents?status=open";
 //    public static final int REQ_TOG=10;
 //    public static final int RES_TOG=20;
     @Override
@@ -43,7 +43,7 @@ public class TabsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                url = "http://eoc-dm.herokuapp.com/api/incident/getIncidents?status=open";
+                url = "https://eoc-dm.herokuapp.com/api/incident/getIncidents?status=open";
 
                 JsonArrayRequest arrReq = new JsonArrayRequest(Request.Method.GET, url,
                         new Response.Listener<JSONArray>() {

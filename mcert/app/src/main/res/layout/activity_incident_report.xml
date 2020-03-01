@@ -34,10 +34,11 @@
                 />
 
             <EditText
+                android:id="@+id/titleofreport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Title of the report"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:hint="Title of the report" />
 
             <TextView
                 android:id="@+id/date"
@@ -48,6 +49,7 @@
                 android:textSize="24dp" />
 
             <EditText
+                android:id="@+id/dateandtime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter date and time"
@@ -93,6 +95,7 @@
                 android:textSize="24dp" />
 
             <EditText
+                android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
                 android:hint="Description"
@@ -179,7 +182,7 @@
                     android:layout_height="44dp"
                     android:background="#FAE10D"
                     android:gravity="center_horizontal"
-                    android:text="Yellow"
+                    android:text="Green"
                     android:textSize="24dp"
                     android:textColor="#BAFFFFFF"
                     app:layout_column="0"
@@ -199,7 +202,7 @@
                     android:layout_height="44dp"
                     android:background="#35A339"
                     android:gravity="center_horizontal"
-                    android:text="Green"
+                    android:text="Yellow"
                     android:textColor="#BAFFFFFF"
                     android:textSize="24dp"
                     app:layout_column="0"
