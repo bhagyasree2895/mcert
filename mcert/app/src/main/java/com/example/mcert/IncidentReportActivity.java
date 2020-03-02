@@ -4,18 +4,28 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class IncidentReportActivity extends AppCompatActivity {
     public static final int TASK_REQ = 1;
@@ -30,18 +40,20 @@ public class IncidentReportActivity extends AppCompatActivity {
     String[] ImpactLevel={"Low","Medium","High"};
 
     String[] ImpactLevel1={"Low","Medium","High"};
-
+    static String token;
     EditText title;
     EditText datetime;
     TextView location;
     EditText description;
     EditText type;
-    Spinner impact;
-    Spinner impact1;
+    MaterialBetterSpinner impact;
+    MaterialBetterSpinner impact1;
     EditText redCount;
     EditText greenCount;
     EditText yellowCount;
     EditText blackCount;
+    EditText Hazmat;
+    EditText Notes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +71,10 @@ public class IncidentReportActivity extends AppCompatActivity {
         greenCount = findViewById(R.id.Count2);
         yellowCount = findViewById(R.id.Count3);
         blackCount = findViewById(R.id.Count4);
+        Hazmat = findViewById(R.id.Hazmat);
+        Notes = findViewById(R.id.Notes);
+
+
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,ImpactLevel);
         MaterialBetterSpinner betterSpinner = findViewById(R.id.spinner1);
@@ -80,27 +96,72 @@ public class IncidentReportActivity extends AppCompatActivity {
             jsonBody.put("location", this.location.getText().toString());
             jsonBody.put("description", this.description.getText().toString());
             jsonBody.put("typeOfIncident", this.type.getText().toString());
-            jsonBody.put("impactLevel", String.valueOf(impact.getSelectedItem()));
-            jsonBody.put("structuralDamageImpact", String.valueOf(impact1.getSelectedItem()));
+            jsonBody.put("impactLevel", String.valueOf(impact.getText().toString()));
+            jsonBody.put("structuralDamageImpact", String.valueOf(impact1.getText().toString()));
             jsonBody.put("red", this.redCount.getText().toString());
             jsonBody.put("green", this.greenCount.getText().toString());
             jsonBody.put("yellow", this.yellowCount.getText().toString());
-            jsonBody.put("black", this.greenCount.getText().toString());
+            jsonBody.put("black", this.blackCount.getText().toString());
+            jsonBody.put("hazmatType", this.Hazmat.getText().toString());
+            jsonBody.put("incidentId", IncidentListAdapter.incidentId);
+            jsonBody.put("notes", this.Notes.getText().toString());
+
+            final String requestBody = jsonBody.toString();
+            final Intent tip_intent = new Intent(this, IncidentListResponse.class);
+            //should be removed after fixing login issue
+            //     startActivity(tip_intent);
 
 
 
+            JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, URL, jsonBody, new Response.Listener<JSONObject>() {
+                @Override
+
+                public void onResponse(JSONObject response) {
+                    Log.i("VOLLEY", response.toString());
+                    // json = new JSONObject(jsonResult);
+                    try {
+                        token=response.getString("token");
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    ;
+                    //  Intent ini = new Intent(this,TabsActivity.class)
+                    startActivity(tip_intent);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("VOLLEY", error.toString());
+
+                    Toast.makeText(getApplicationContext(),"Invalid Credentials",Toast.LENGTH_SHORT).show();
+
+                }
+            })
+            {
+                @Override
+                public String getBodyContentType() {
+                    return "application/json; charset=utf-8";
+
+                }
+
+                public Map<String, String> getHeaders() throws AuthFailureError {
+
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("Content-Type", "application/json; charset=UTF-8");
+                    params.put("Authorization", MainActivity.token);
+                    Log.e("token", MainActivity.token);
+
+                    return params;
+                }
+
+            };
+
+            requestQueue.add(stringRequest);
 
 
-
-
-
-            Intent ini = new Intent();
-            setResult(TabsActivity.GOOD_RES, ini);
-            finish();
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
 
 

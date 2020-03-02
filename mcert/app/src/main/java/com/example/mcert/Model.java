@@ -7,6 +7,8 @@ public class Model {
         return Incidentsarray;
     }
 
+    public int IncidentID;
+
     //setter for arraylist
     public void setIncidentsarray(ArrayList<Incident> Incidentsarray) {
 
@@ -15,11 +17,15 @@ public class Model {
 
     //creating a class for words in recyclerview
     public static class Incident {
-        public String Incident;
+        public String incidentNam;
+        public int incidentId=0;
 
 
-        public Incident(String Incident) {
-            this.Incident = Incident;
+
+        public Incident(String Incident,int incidentId) {
+            this.incidentNam = Incident;
+            this.incidentId = incidentId;
+
 
 
         }
@@ -38,7 +44,7 @@ public class Model {
     private ArrayList<Incident> Incidentsarray;
 
     private Model() {
-        setIncidentsarray(new ArrayList<Incident>());
+       setIncidentsarray(new ArrayList<Incident>());
 //        loadModel();
     }
 

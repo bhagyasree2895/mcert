@@ -21,7 +21,7 @@ import java.util.List;
 
 public class IncidentListResponse extends AppCompatActivity {
 
-    private Model incident_model;
+   static  Model incident_model;
     private IncidentListAdapter incidentServer = null;
     private RecyclerView incidentrecycler = null;
     private GestureDetectorCompat gesture_detector = null;
@@ -37,6 +37,7 @@ public class IncidentListResponse extends AppCompatActivity {
                 if (holder instanceof IncidentListAdapter.IncidentViewHolder
                 ) {
                     int position = holder.getAdapterPosition();
+
 
                     // handle single tap
                     Log.d("click", "clicked on item "+ position);
@@ -85,13 +86,16 @@ public class IncidentListResponse extends AppCompatActivity {
             //JSONObject jsonObj = new JSONObject(TabsActivity.response_incident_api);
             JSONArray jsonArray = new JSONArray(TabsActivity.response_incident_api);
             //JSONArray data = perdata.getJSONArray("results");
-            Log.d("lolraja",jsonArray.toString() );
+           // Log.d("lolraja",jsonArray.toString() );
             for (int i = 0; i<jsonArray.length(); i++){
                 JSONObject jsonObj = jsonArray.getJSONObject(i);
                 String incident_name = jsonObj.getString("incidentName");
                 String date_time = jsonObj.getString("dateAndTime");
-
-                incident_model.getIncidentsarray().add(new Model.Incident(incident_name + " " + date_time));
+                int incidentId =   Integer.parseInt(jsonObj.getString("incidentId"));
+                Log.e("indcidentIddet",incidentId+"");
+                Model.Incident newinc =new Model.Incident(incident_name + " " + date_time,incidentId);
+                incident_model.getIncidentsarray().add(newinc);
+                incident_model.IncidentID=incidentId;
             }
 
         } catch (JSONException e) {

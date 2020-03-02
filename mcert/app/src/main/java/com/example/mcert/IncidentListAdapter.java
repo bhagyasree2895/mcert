@@ -2,6 +2,7 @@ package com.example.mcert;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class IncidentListAdapter  extends RecyclerView.Adapter<IncidentListAdapter.IncidentViewHolder> {
     private Model incident_model;
     private Context context;
+    public static int incidentId=0;
 
     public IncidentListAdapter(Model incident_model, Context context) {
         super();
@@ -42,13 +44,16 @@ public class IncidentListAdapter  extends RecyclerView.Adapter<IncidentListAdapt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull IncidentListAdapter.IncidentViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull IncidentListAdapter.IncidentViewHolder holder, final int position) {
         LinearLayout hold_view = holder.linearView;
         TextView word_holder = hold_view.findViewById(R.id.incident_holder);
-        word_holder.setText(incident_model.getIncidentsarray().get(position).Incident);
+        word_holder.setText(incident_model.getIncidentsarray().get(position).incidentNam);
+
         word_holder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("asdfg",incident_model.getIncidentsarray().get(position).incidentId+"");
+                incidentId=incident_model.getIncidentsarray().get(position).incidentId;
                 Intent in=new Intent(context,IncidentReportActivity.class);
 
                 context.startActivity(in);
