@@ -124,7 +124,9 @@ protected void onCreate(Bundle savedInstanceState) {
     }
 
     private void getIncidentsList() {
+
         this.url = "https://eoc-dm.herokuapp.com/api/incident/getIncidents?status=open";
+
         JsonArrayRequest arrReq = new JsonArrayRequest(Request.Method.GET, url,
                 new Response.Listener<JSONArray>() {
                     @Override
