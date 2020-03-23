@@ -2,14 +2,19 @@ package com.example.mcert;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -24,6 +29,7 @@ import com.weiwangcn.betterspinner.library.material.MaterialBetterSpinner;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,9 +43,9 @@ public class IncidentReportActivity extends AppCompatActivity {
 
     public static final int FLO_RES = 2;
 
-    String[] ImpactLevel={"Low","Medium","High"};
+    String[] ImpactLevel = {"Low", "Medium", "High"};
 
-    String[] ImpactLevel1={"Low","Medium","High"};
+    String[] ImpactLevel1 = {"Low", "Medium", "High"};
     static String token;
     EditText title;
     EditText datetime;
@@ -54,6 +60,9 @@ public class IncidentReportActivity extends AppCompatActivity {
     EditText blackCount;
     EditText Hazmat;
     EditText Notes;
+    String dateStr,timeStr;
+    TextView dateTV;
+    TextView timeTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,14 +82,14 @@ public class IncidentReportActivity extends AppCompatActivity {
         blackCount = findViewById(R.id.Count4);
         Hazmat = findViewById(R.id.Hazmat);
         Notes = findViewById(R.id.Notes);
-
-
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,ImpactLevel);
+        dateTV=findViewById(R.id.dateTV);
+        timeTV=findViewById(R.id.timeTV);
+        //datetime.setText(dateStr+" "+timeStr);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, ImpactLevel);
         MaterialBetterSpinner betterSpinner = findViewById(R.id.spinner1);
         betterSpinner.setAdapter(arrayAdapter);
 
-        ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,ImpactLevel1);
+        ArrayAdapter<String> arrayAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, ImpactLevel1);
         MaterialBetterSpinner betterSpinner1 = findViewById(R.id.spinner);
         betterSpinner1.setAdapter(arrayAdapter1);
     }
@@ -92,7 +101,8 @@ public class IncidentReportActivity extends AppCompatActivity {
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("title", this.title.getText().toString());
             // Toast.makeText(getApplicationContext(),this.pwd.getText().toString()+"",Toast.LENGTH_SHORT).show();
-            jsonBody.put("timeDate", this.datetime.getText().toString());
+           jsonBody.put("timeDate",datetime.getText().toString());
+            //jsonBody.put("timeDate", dateTV.getText().toString()+" "+timeTV.getText().toString());
             jsonBody.put("location", this.location.getText().toString());
             jsonBody.put("description", this.description.getText().toString());
             jsonBody.put("typeOfIncident", this.type.getText().toString());
@@ -112,7 +122,6 @@ public class IncidentReportActivity extends AppCompatActivity {
             //     startActivity(tip_intent);
 
 
-
             JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, URL, jsonBody, new Response.Listener<JSONObject>() {
                 @Override
 
@@ -120,7 +129,7 @@ public class IncidentReportActivity extends AppCompatActivity {
                     Log.i("VOLLEY", response.toString());
                     // json = new JSONObject(jsonResult);
                     try {
-                        token=response.getString("token");
+                        token = response.getString("token");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -133,11 +142,10 @@ public class IncidentReportActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     Log.e("VOLLEY", error.toString());
 
-                    Toast.makeText(getApplicationContext(),"Invalid Credentials",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT).show();
 
                 }
-            })
-            {
+            }) {
                 @Override
                 public String getBodyContentType() {
                     return "application/json; charset=utf-8";
@@ -165,9 +173,9 @@ public class IncidentReportActivity extends AppCompatActivity {
     }
 
 
-        public void getLocationAction(View v) {
+    public void getLocationAction(View v) {
         Intent ini = new Intent(this, MapsActivity.class);
-        startActivityForResult(ini,11);
+        startActivityForResult(ini, 11);
     }
 
     public void getDisasterType(View v) {
@@ -181,30 +189,78 @@ public class IncidentReportActivity extends AppCompatActivity {
                 String str = disasterInt.getStringExtra("name");
                 EditText edt = findViewById(R.id.Type2);
                 edt.setText(str);
-            }
-            else if (resultCode == GOOD_RES) {
+            } else if (resultCode == GOOD_RES) {
                 String str = disasterInt.getStringExtra("disaster");
                 EditText edt = findViewById(R.id.Type2);
                 edt.setText(str);
-            }
-            else if(resultCode == TOG_RES){
+            } else if (resultCode == TOG_RES) {
                 String str = disasterInt.getStringExtra("disaster");
                 EditText edt = findViewById(R.id.Type2);
                 edt.setText(str);
-            }
-            else if(resultCode == FLO_RES){
+            } else if (resultCode == FLO_RES) {
                 String str = disasterInt.getStringExtra("disaster");
                 EditText edt = findViewById(R.id.Type2);
                 edt.setText(str);
             }
         }
-        if(requestCode == 11) {
+        if (requestCode == 11) {
             if (resultCode == 11) {
                 String str = disasterInt.getStringExtra("LocationName");
-                TextView incidentLocTV=findViewById(R.id.location);
+                TextView incidentLocTV = findViewById(R.id.location);
                 incidentLocTV.setText(str);
             }
         }
     }
+
+
+    private int mYear, mMonth, mDay, mHour, mMinute;
+
+    public void dateClick(View v) {
+        // Get Current Date
+        final Calendar c = Calendar.getInstance();
+        mYear = c.get(Calendar.YEAR);
+        mMonth = c.get(Calendar.MONTH);
+        mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+
+                        dateStr=dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+                        dateTV.setText((monthOfYear + 1)+"-"+dayOfMonth  + "-" + year);
+datetime.setText((monthOfYear + 1)+"-"+dayOfMonth  + "-" + year);
+                    }
+                }, mYear, mMonth, mDay);
+        datePickerDialog.show();
+    }
+
+    public void timeClick(View v) {
+
+            // Get Current Time
+            final Calendar c = Calendar.getInstance();
+            mHour = c.get(Calendar.HOUR_OF_DAY);
+            mMinute = c.get(Calendar.MINUTE);
+
+            // Launch Time Picker Dialog
+            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+                    new TimePickerDialog.OnTimeSetListener() {
+
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay,
+                                              int minute) {
+                            TextView timeTV=findViewById(R.id.timeTV);
+                            timeStr=hourOfDay + ":" + minute;
+                            timeTV.setText(hourOfDay + ":" + minute);
+                            datetime.setText(datetime.getText().toString()+ " "+hourOfDay + ":" + minute);
+                        }
+                    }, mHour, mMinute, false);
+            timePickerDialog.show();
+        }
+
 }
+
 

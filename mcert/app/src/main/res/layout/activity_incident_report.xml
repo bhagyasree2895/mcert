@@ -41,10 +41,38 @@
                 android:hint="Title of the report" />
 
             <TextView
-                android:id="@+id/date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/dateAndTimeTV"
+                android:layout_width="329dp"
+                android:layout_height="59dp"
                 android:text="Report date and time "
+                android:textColor="#03A9F4"
+                android:textSize="24dp" />
+            <Button
+                android:id="@+id/DateBTN"
+                android:layout_width="159dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:onClick="dateClick"
+                android:text="Select Date" />
+            <Button
+                android:id="@+id/TimeBTN"
+                android:layout_width="159dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:onClick="timeClick"
+                android:text="Select Time" />
+            <TextView
+                android:id="@+id/dateTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reported date"
+                android:textColor="#03A9F4"
+                android:textSize="24dp" />
+            <TextView
+                android:id="@+id/timeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reported time "
                 android:textColor="#03A9F4"
                 android:textSize="24dp" />
 
@@ -52,8 +80,7 @@
                 android:id="@+id/dateandtime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter date and time"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp" />
             <androidx.gridlayout.widget.GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

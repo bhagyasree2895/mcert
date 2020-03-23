@@ -36,12 +36,26 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/IncidentRecycler"
-        android:layout_width="403dp"
-        android:layout_height="444dp"
+        android:layout_width="386dp"
+        android:layout_height="240dp"
         android:background="@drawable/my_button_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.64"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.337" />
+        app:layout_constraintVertical_bias="0.193" />
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="374dp"
+        android:layout_height="209dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.685"
+        tools:context=".MapsActivity" />
 </androidx.constraintlayout.widget.ConstraintLayout>

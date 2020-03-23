@@ -38,7 +38,8 @@ public class Model {
         if (my_Model == null) {
             my_Model = new Model();
         }
-        return my_Model;
+
+            return my_Model;
     }
 
     private ArrayList<Incident> Incidentsarray;
@@ -46,6 +47,9 @@ public class Model {
     private Model() {
        setIncidentsarray(new ArrayList<Incident>());
 //        loadModel();
+    }
+    public void clear(){
+        my_Model.clear();
     }
 
 
