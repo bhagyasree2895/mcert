@@ -75,7 +75,7 @@ public class GeneralReport extends AppCompatActivity {
         startActivityForResult(disaster_ini, TASK_REQ);
     }
     public void selectImagesAction(View v){
-        Button button = findViewById(R.id.button);
+        Button button = findViewById(R.id.choose);
         gvGallery = (GridView)findViewById(R.id.gv);
 
         button.setOnClickListener(new View.OnClickListener() {

@@ -283,7 +283,7 @@
                 app:rowCount="2">
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/choose"
                     android:layout_width="193dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
