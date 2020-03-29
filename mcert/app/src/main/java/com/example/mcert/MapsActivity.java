@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -45,12 +44,15 @@ public class MapsActivity extends FragmentActivity
 
     private GoogleMap mMap;
     ArrayList<Double> loc=new ArrayList<Double>();
-    String finalLoc="";
+    String finalLoc="", state="null";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+        if(loc.size()==0){
+            showSettingsAlert();
+        }
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -71,16 +73,24 @@ public class MapsActivity extends FragmentActivity
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         // Add a marker in Sydney, Australia, and move the camera.
-        if(loc.size()==0){
-            LatLng sydney = new LatLng(24,92);
-            mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Maryville"));
-            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        }
-        else{
+//        if(loc.size()==0){
+//            showSettingsAlert();
+//        }
+//        if(loc.size()==0){
+//            LatLng sydney = new LatLng(24,92);
+//            mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Maryville"));
+//            mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+//        }
+        try{
             LatLng sydney = new LatLng(loc.get(0),loc.get(1));
             mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Maryville"));
             mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
+        }
+        catch (Exception e){
+//           if(loc.size()==0){
+//               showSettingsAlert();
+//           }
         }
     }
     private static final String TAG = "MainActivity";
@@ -114,7 +124,6 @@ public class MapsActivity extends FragmentActivity
         startLocationUpdates();
 
         mLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-
         if(mLocation == null){
             startLocationUpdates();
         }
@@ -180,7 +189,6 @@ public class MapsActivity extends FragmentActivity
 
     @Override
     public void onLocationChanged(Location location) {
-
         String msg = "Updated Location: " +
                 Double.toString(location.getLatitude()) + "," +
                 Double.toString(location.getLongitude());
@@ -210,6 +218,7 @@ public class MapsActivity extends FragmentActivity
                     finalLoc=addresses.get(0).getFeatureName() + ", " +
                             addresses.get(0).getLocality() +", " + addresses.get(0).getAdminArea() + ", " +
                             addresses.get(0).getCountryName();
+                    state=addresses.get(0).getAdminArea();
                     locNametextview.setText(addresses.get(0).getFeatureName() + ", " +
                             addresses.get(0).getLocality() +", " + addresses.get(0).getAdminArea() + ", " +
                             addresses.get(0).getCountryName());
@@ -225,6 +234,27 @@ public class MapsActivity extends FragmentActivity
             e.printStackTrace();
         }
 
+    }
+    public void showSettingsAlert() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+                MapsActivity.this);
+        alertDialog.setTitle("SETTINGS");
+        alertDialog.setMessage("Enable Location Provider! Go to settings menu");
+        alertDialog.setPositiveButton("Settings",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(
+                                Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                        MapsActivity.this.startActivity(intent);
+                    }
+                });
+        alertDialog.setNegativeButton("Cancel",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        alertDialog.show();
     }
 
     private boolean checkLocation() {
@@ -249,7 +279,6 @@ public class MapsActivity extends FragmentActivity
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface paramDialogInterface, int paramInt) {
-
                     }
                 });
         dialog.show();

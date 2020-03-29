@@ -61,20 +61,6 @@
                 android:layout_margin="10dp"
                 android:onClick="timeClick"
                 android:text="Select Time" />
-            <TextView
-                android:id="@+id/dateTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reported date"
-                android:textColor="#03A9F4"
-                android:textSize="24dp" />
-            <TextView
-                android:id="@+id/timeTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reported time "
-                android:textColor="#03A9F4"
-                android:textSize="24dp" />
 
             <EditText
                 android:id="@+id/dateandtime"

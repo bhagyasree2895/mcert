@@ -60,7 +60,7 @@ public class IncidentReportActivity extends AppCompatActivity {
     EditText blackCount;
     EditText Hazmat;
     EditText Notes;
-    String dateStr,timeStr;
+    String dateStr, timeStr;
     TextView dateTV;
     TextView timeTV;
 
@@ -82,8 +82,6 @@ public class IncidentReportActivity extends AppCompatActivity {
         blackCount = findViewById(R.id.Count4);
         Hazmat = findViewById(R.id.Hazmat);
         Notes = findViewById(R.id.Notes);
-        dateTV=findViewById(R.id.dateTV);
-        timeTV=findViewById(R.id.timeTV);
         //datetime.setText(dateStr+" "+timeStr);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, ImpactLevel);
         MaterialBetterSpinner betterSpinner = findViewById(R.id.spinner1);
@@ -101,7 +99,7 @@ public class IncidentReportActivity extends AppCompatActivity {
             JSONObject jsonBody = new JSONObject();
             jsonBody.put("title", this.title.getText().toString());
             // Toast.makeText(getApplicationContext(),this.pwd.getText().toString()+"",Toast.LENGTH_SHORT).show();
-           jsonBody.put("timeDate",datetime.getText().toString());
+            jsonBody.put("timeDate", datetime.getText().toString());
             //jsonBody.put("timeDate", dateTV.getText().toString()+" "+timeTV.getText().toString());
             jsonBody.put("location", this.location.getText().toString());
             jsonBody.put("description", this.description.getText().toString());
@@ -230,9 +228,9 @@ public class IncidentReportActivity extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int year,
                                           int monthOfYear, int dayOfMonth) {
 
-                        dateStr=dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
-                        dateTV.setText((monthOfYear + 1)+"-"+dayOfMonth  + "-" + year);
-datetime.setText((monthOfYear + 1)+"-"+dayOfMonth  + "-" + year);
+                        dateStr = dayOfMonth + "-" + (monthOfYear + 1) + "-" + year;
+                        //dateTV.setText((monthOfYear + 1)+"-"+dayOfMonth  + "-" + year);
+                        datetime.setText((monthOfYear + 1) + "-" + dayOfMonth + "-" + year);
                     }
                 }, mYear, mMonth, mDay);
         datePickerDialog.show();
@@ -240,26 +238,25 @@ datetime.setText((monthOfYear + 1)+"-"+dayOfMonth  + "-" + year);
 
     public void timeClick(View v) {
 
-            // Get Current Time
-            final Calendar c = Calendar.getInstance();
-            mHour = c.get(Calendar.HOUR_OF_DAY);
-            mMinute = c.get(Calendar.MINUTE);
-
-            // Launch Time Picker Dialog
-            TimePickerDialog timePickerDialog = new TimePickerDialog(this,
-                    new TimePickerDialog.OnTimeSetListener() {
-
-                        @Override
-                        public void onTimeSet(TimePicker view, int hourOfDay,
-                                              int minute) {
-                            TextView timeTV=findViewById(R.id.timeTV);
-                            timeStr=hourOfDay + ":" + minute;
-                            timeTV.setText(hourOfDay + ":" + minute);
-                            datetime.setText(datetime.getText().toString()+ " "+hourOfDay + ":" + minute);
-                        }
-                    }, mHour, mMinute, false);
-            timePickerDialog.show();
-        }
+        // Get Current Time
+        final Calendar c = Calendar.getInstance();
+        mHour = c.get(Calendar.HOUR_OF_DAY);
+        mMinute = c.get(Calendar.MINUTE);
+        datetime.setText(datetime.getText().toString()+ " "+mHour + ":" + mMinute);
+//        // Launch Time Picker Dialog
+//        TimePickerDialog timePickerDialog = new TimePickerDialog(this,
+//                new TimePickerDialog.OnTimeSetListener() {
+//
+//                    @Override
+//                    public void onTimeSet(TimePicker view, int hourOfDay,
+//                                          int minute) {
+//                        timeStr = hourOfDay + ":" + minute;
+//                        //timeTV.setText(hourOfDay + ":" + minute);
+//                        datetime.setText(datetime.getText().toString()+ " "+hourOfDay + ":" + minute);
+//                    }
+//                }, mHour, mMinute, true);
+//        timePickerDialog.show();
+   }
 
 }
 
