@@ -6,28 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
-    <RadioGroup
-        android:layout_width="374dp"
-        android:layout_height="53dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.027"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.762">
-
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="341dp"
-            android:layout_height="wrap_content"
-            android:text="Yes" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="342dp"
-            android:layout_height="19dp"
-            android:text="No" />
-    </RadioGroup>
 
     <TextView
         android:id="@+id/last"
@@ -36,7 +14,7 @@
         android:text="LastName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.644"
+        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.095" />
@@ -62,7 +40,7 @@
         android:text="FirstName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.095" />
@@ -80,7 +58,7 @@
         app:layout_constraintVertical_bias="0.231" />
 
     <TextView
-        android:id="@+id/Contach "
+        android:id="@+id/Contach"
         android:layout_width="156dp"
         android:layout_height="26dp"
         android:text="Contact Number"
@@ -159,31 +137,31 @@
 
     <EditText
         android:id="@+id/editText13"
-        android:layout_width="156dp"
-        android:layout_height="37dp"
+        android:layout_width="146dp"
+        android:layout_height="58dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.023"
+        app:layout_constraintHorizontal_bias="0.037"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.632" />
+        app:layout_constraintVertical_bias="0.61" />
 
     <EditText
         android:id="@+id/editText14"
-        android:layout_width="156dp"
-        android:layout_height="37dp"
+        android:layout_width="158dp"
+        android:layout_height="52dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.792"
+        app:layout_constraintHorizontal_bias="0.77"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.618" />
+        app:layout_constraintVertical_bias="0.622" />
 
     <TextView
         android:id="@+id/textView15"
@@ -212,8 +190,8 @@
         app:layout_constraintVertical_bias="0.144" />
 
     <RadioGroup
-        android:layout_width="374dp"
-        android:layout_height="53dp"
+        android:layout_width="94dp"
+        android:layout_height="56dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.027"
@@ -222,15 +200,15 @@
         app:layout_constraintVertical_bias="0.762">
 
         <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="341dp"
+            android:id="@+id/radioYesButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Yes" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="342dp"
-            android:layout_height="19dp"
+            android:id="@+id/radioNoButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="No" />
     </RadioGroup>
 
@@ -247,10 +225,11 @@
         app:layout_constraintVertical_bias="0.816" />
 
     <RadioGroup
-        android:layout_width="361dp"
-        android:layout_height="61dp"
-        tools:layout_editor_absoluteX="9dp"
-        tools:layout_editor_absoluteY="608dp">
+        android:layout_width="114dp"
+        android:layout_height="76dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13">
 
         <RadioButton
             android:id="@+id/radioButton8"
@@ -277,5 +256,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.989" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="221dp"
+        android:layout_height="54dp"
+        android:ems="10"
+        android:hint="If Yes, Enter Certifications"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.766" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
