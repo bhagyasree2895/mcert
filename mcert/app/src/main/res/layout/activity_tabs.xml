@@ -8,51 +8,36 @@
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="324dp"
-        android:layout_height="91dp"
+        android:layout_width="303dp"
+        android:layout_height="151dp"
         android:background="#85B4DA"
         android:onClick="general"
         android:text="General Report"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.287" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="324dp"
-        android:layout_height="91dp"
-        android:background="#85B4DA"
-        android:text="past reports"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.472" />
 
     <Button
         android:id="@+id/button5"
-        android:layout_width="324dp"
-        android:layout_height="91dp"
+        android:layout_width="303dp"
+        android:layout_height="151dp"
         android:background="#85B4DA"
         android:onClick="profile"
         android:text="MY PROFILE"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.729" />
+        app:layout_constraintVertical_bias="0.862" />
 
     <Button
         android:id="@+id/incident_list"
-        android:layout_width="324dp"
-        android:layout_height="91dp"
+        android:layout_width="303dp"
+        android:layout_height="151dp"
         android:background="#85B4DA"
         android:text="Incidents List"
         android:textSize="24sp"
