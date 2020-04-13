@@ -27,6 +27,8 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
     EditText firstname;
@@ -63,6 +65,59 @@ public class SignUpActivity extends AppCompatActivity {
 //    }
 
     public void Register(View v) {
+        final String fName = firstname.getText().toString();
+        final String lName = lastname.getText().toString();
+        final String mobNum = Contact.getText().toString();
+        final String user = Email.getText().toString();
+        final String p = Password.getText().toString();
+        final String Cpass = Confirm.getText().toString();
+        if (fName.length() == 0) {
+            firstname.requestFocus();
+            firstname.setError("Name field cannot be empty!!");
+        } else if (!fName.matches("[a-zA-Z ]+")) {
+            firstname.requestFocus();
+            firstname.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+        }
+        if (lName.length() == 0) {
+            lastname.requestFocus();
+            lastname.setError("Name field cannot be empty!!");
+        } else if (!lName.matches("[a-zA-Z ]+")) {
+            lastname.requestFocus();
+            lastname.setError("ENTER ONLY ALPHABETICAL CHARACTER");
+        }
+        //EmailId validation
+
+        else if (user.length() == 0) {
+            Email.requestFocus();
+            Email.setError("Email field cannot be empty!!");
+        }
+        else if (!isValidEmail(user)) {
+
+            Email.requestFocus();
+            Email.setError("Email must include @somedomain.com");
+        }
+
+//isValidEmail
+        //Mobile Number validation
+
+        else if (mobNum.length() < 10||mobNum.length() >10) {
+            Contact.requestFocus();
+            Contact.setError("Mobile Field is Empty/ too short");
+        } else if (!Pattern.matches("[0-9]+", mobNum)) {
+            Contact.setError("Mobile Field should contain only numerical values");
+        }
+
+        //Password validation
+        else if (p.length() < 8 && !isValidPassword(p)) {
+            Password.requestFocus();
+            Password.setError("Enter Valid Password with atleast 1 capital letter, 1 small letter, 1 number and a symbol");
+        }
+
+        //Confirm Password Validation
+        else if (!(Cpass.equals(p))) {
+            Confirm.requestFocus();
+            Confirm.setError("Password and Confirm Password does not match");
+        }
         try {
             RequestQueue requestQueue = Volley.newRequestQueue(this);
             String URL = "https://eoc-dm.herokuapp.com/api/auth/register";
@@ -94,9 +149,9 @@ public class SignUpActivity extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e("VOLLEY", error.getMessage());
-
-                    Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT).show();
+//                    Log.e("VOLLEY", error.getMessage());
+//
+//                    Toast.makeText(getApplicationContext(), "Invalid Credentials", Toast.LENGTH_SHORT).show();
 
                 }
             }) {
@@ -132,6 +187,24 @@ public class SignUpActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+    }
+    public static boolean isValidPassword(final String password){
+        Pattern pattern;
+        Matcher matcher;
+        final String PASSWORD_PATTERN="^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$";
+        pattern=Pattern.compile(PASSWORD_PATTERN);
+        matcher=pattern.matcher(password);
+        return matcher.matches();
+    }
+
+    // ^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$
+    public static boolean isValidEmail(final String Email){
+        Pattern pattern;
+        Matcher matcher;
+        final String EMAIL_PATTERN="^[a-z0-9](\\.?[a-z0-9]){5,}@g(oogle)?mail\\.com$";
+        pattern=Pattern.compile(EMAIL_PATTERN);
+        matcher=pattern.matcher(Email);
+        return matcher.matches();
     }
 
 //    private void getRepoList(String username, String pwd) {
