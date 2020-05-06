@@ -1,16 +1,12 @@
-# mcert
-Disaster Management Project
+# Disaster-Management
 
-This is a minor modification done by Bhagya Sree Chanda
+## Introduction:
+There exist systems to manage emergency or disaster situations. However, these systems lack quick communication and the ability to predict and visualize the locations of several response teams in different areas simultaneously. We propose an approach to spontaneously pass critical information from a mobile application. The same data services will be used by the web application, which is out of the scope of this research.
 
-I am chaitra Vemula pursuing my masters at northwest missouri state university
+## Android App installation reference 
 
-Link to the Mock Flow https://projects.invisionapp.com/prototype/CERT-ck0lv5e0z0030wt01o45qnaa5/play
+https://github.com/bhagyasree2895/mcert/blob/master/app-debug.apk (Click on the download button to get the file)
 
-Link to the API project for the Mobile App/Web Application https://github.com/GunashekarKoppula/mcert-api
+Please refer to the user manual for learning more about the Android App.
 
-I am sunil Mundru pursuing my masters at Northwest missouri state university
-
-I am Harshith Gudapati pursuing my masters at Northwest missouri state university
-
-I am Ganesh Siripuram our project is Disaster Management
+[User Manual](https://github.com/bhagyasree2895/mcert/blob/master/documentation/DisasterMangement_02_UIM_v3-1%20(1).doc)
